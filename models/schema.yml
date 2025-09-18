@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "A staging model that cleans and prepares raw customer data from the CRM."
+    columns:
+      - name: customer_id
+        description: "The unique identifier for a customer."
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "The customer's first name."
+      - name: last_name
+        description: "The customer's last name."
+      - name: email
+        description: "The customer's email address."
+sources:
+  - name: public_raw_data
+    schema: public
+    database: my_dbt_db
+    tables:
+      - name: raw_customers
